@@ -8,6 +8,7 @@ import com.mycompany.saam.teste.pratico.model.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author jonat
@@ -19,15 +20,19 @@ public class SqlGeneration {
     }
 
     public static String insertSql(Model table, List<String> campos) {
+        String uuid = UUID.randomUUID().toString();
         StringBuilder sqlInsert = new StringBuilder("INSERT INTO ")
                 .append(table.getTableName())
                 .append(" (")
                 .append(String.join(", ", campos))
-                .append(") VALUES (");
+                .append(") VALUES (")
+                .append("\'"+ uuid +"\',");
+
         List<String> placeHolders = new ArrayList<>();
-        campos.forEach(campo -> placeHolders.add("?"));
+        campos.subList(1, campos.size()).forEach(campo -> placeHolders.add("?"));
         sqlInsert.append(String.join(", ", placeHolders))
                  .append(");");
+        table.setId(uuid);
         return sqlInsert.toString();
     }
 
@@ -45,7 +50,7 @@ public class SqlGeneration {
                 .append(" FROM ")
                 .append(table.getTableName())
                 .append(" ");
-        if (where != null && !"".equals(where.trim())) {
+        if (where != null && !where.trim().isEmpty()) {
             sqlSelect.append(where);
         }
         sqlSelect.append(";");
@@ -61,20 +66,17 @@ public class SqlGeneration {
                 .append(table.getTableName())
                 .append(" SET ");
         List<String> setValues = new ArrayList<>();
-        campos.forEach(campo -> setValues.add(campo + " = ?"));
+        campos.subList(1, campos.size()).forEach(campo -> setValues.add(campo + " = ?"));
         sqlUpdate.append(String.join(", ", setValues))
-                 .append(" WHERE ")
-                 .append(table.getId())
-                 .append(" = ?;");
+                 .append(" WHERE id = ?::uuid;");
+
         return sqlUpdate.toString();
     }
 
     public static String deleteSql(Model table) {
         StringBuilder sqlDelete = new StringBuilder("DELETE FROM ")
                 .append(table.getTableName())
-                .append(" WHERE ")
-                .append(table.getId())
-                .append(" = ?;");
+                .append(" WHERE id = ?::uuid;");
         return sqlDelete.toString();
     }
 

@@ -13,11 +13,11 @@ import java.util.Objects;
  * @author jonat
  */
 public class Usuario extends Model {
-    
+
     private String nome;
     private String email;
     private String senha;
-    
+
     public Usuario () {}
 
     public Usuario(String nome, String email, String senha) {
@@ -50,8 +50,8 @@ public class Usuario extends Model {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
+
+
 
     @Override
     public int hashCode() {
@@ -89,11 +89,12 @@ public class Usuario extends Model {
     public String getTableName() {
         return "Usuario";
     }
-    
+
 
     @Override
     public List<String> getFieldNames() {
         List listaDeAtributos = new ArrayList<String>();
+        listaDeAtributos.add("id");
         listaDeAtributos.add("Nome");
         listaDeAtributos.add("Email");
         listaDeAtributos.add("Senha");

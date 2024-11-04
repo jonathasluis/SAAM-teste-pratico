@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author jonat
@@ -44,7 +43,7 @@ public class UsuarioDao implements Dao<Usuario> {
         try (Connection conn = PostgresDBConnect.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 Usuario usuario = new Usuario();
                 usuario.setId(rs.getString("id"));
                 usuario.setNome(rs.getString("nome"));
@@ -61,7 +60,7 @@ public class UsuarioDao implements Dao<Usuario> {
 
     @Override
     public Usuario selectById(String id) {
-        String sql = SqlGeneration.selectSql(new Usuario(), " WHERE id = ? ");
+        String sql = SqlGeneration.selectSql(new Usuario(), " WHERE id = ?::uuid ");
         return selectWithWhere(sql, id);
     }
 

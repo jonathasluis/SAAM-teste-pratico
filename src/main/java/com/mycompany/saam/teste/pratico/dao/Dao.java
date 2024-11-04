@@ -5,19 +5,22 @@
 package com.mycompany.saam.teste.pratico.dao;
 
 import com.mycompany.saam.teste.pratico.model.Model;
-import java.sql.ResultSet;
+
 import java.util.List;
 
 /**
- *
- * @author jonat
  * @param <T>
+ * @author jonat
  */
 public interface Dao<T extends Model> {
 
     public Boolean insert(T model);
-    public List<T> select ();
+
+    public List<T> select();
+
     public T selectById(String id);
+
     public Boolean update(T model, String id);
+
     public Boolean delete(String id);
 }

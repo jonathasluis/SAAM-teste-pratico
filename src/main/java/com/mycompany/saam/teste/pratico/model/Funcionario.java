@@ -14,17 +14,21 @@ import java.util.Objects;
  * @author jonat
  */
 public class Funcionario extends Model {
-    
+
     private String nome;
     private Date dataAdmissao;
     private Double valorSalario;
     private Boolean status;
+    private String idUsuario;
 
-    public Funcionario(String nome, Date dataAdmissao, Double valorSalario, Boolean status) {
+    public Funcionario() {
+    }
+    public Funcionario(String nome, Date dataAdmissao, Double valorSalario, Boolean status, String idUsuario) {
         this.nome = nome;
         this.dataAdmissao = dataAdmissao;
         this.valorSalario = valorSalario;
         this.status = status;
+        this.idUsuario = idUsuario;
     }
 
     public String getNome() {
@@ -59,15 +63,25 @@ public class Funcionario extends Model {
         this.status = status;
     }
 
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.nome);
-        hash = 83 * hash + Objects.hashCode(this.dataAdmissao);
-        hash = 83 * hash + Objects.hashCode(this.valorSalario);
-        hash = 83 * hash + Objects.hashCode(this.status);
+        hash = 67 * hash + Objects.hashCode(this.nome);
+        hash = 67 * hash + Objects.hashCode(this.dataAdmissao);
+        hash = 67 * hash + Objects.hashCode(this.valorSalario);
+        hash = 67 * hash + Objects.hashCode(this.status);
+        hash = 67 * hash + Objects.hashCode(this.idUsuario);
         return hash;
     }
+    
 
     @Override
     public boolean equals(Object obj) {
@@ -97,20 +111,22 @@ public class Funcionario extends Model {
     public String toString() {
         return "Funcionario{" + "nome=" + nome + ", dataAdmissao=" + dataAdmissao + ", valorSalario=" + valorSalario + ", status=" + status + '}';
     }
-    
+
         @Override
     public String getTableName() {
         return "Funcionario";
     }
-    
+
 
     @Override
     public List<String> getFieldNames() {
         List listaDeAtributos = new ArrayList<String>();
+        listaDeAtributos.add("Id");
         listaDeAtributos.add("Nome");
         listaDeAtributos.add("DataAdmissao");
         listaDeAtributos.add("ValorSalario");
         listaDeAtributos.add("Status");
+        listaDeAtributos.add("usuarioID");
         return listaDeAtributos;
     }
 }

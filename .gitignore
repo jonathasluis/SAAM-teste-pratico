@@ -129,3 +129,4 @@ nbdist/
 # End of https://www.toptal.com/developers/gitignore/api/java,netbeans,intellij+all
 /SAAM-teste-pratico.iml
 /nbactions.xml
+/target/

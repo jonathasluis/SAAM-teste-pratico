@@ -5,8 +5,8 @@
 package com.mycompany.saam.teste.pratico.util;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 
 /**
@@ -16,9 +16,9 @@ import java.sql.DriverManager;
 public class PostgresDBConnect {
 
     public static Connection connect() throws SQLException {
-        String url = "jdbc:postgresql://localhost/test";
-        String user = "";
-        String password = "";
+        String url = "jdbc:postgresql://localhost/saam_teste_pratico";
+        String user = "postgres";
+        String password = "root";
 
         return DriverManager.getConnection(url, user, password);
     }
