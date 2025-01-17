@@ -63,11 +63,8 @@ class FuncionarioDaoTest {
         List<Funcionario> funcionarios = funcionarioDao.select();
         assertEquals(1, funcionarios.size());
         Funcionario funcionarioInserido = funcionarios.get(0);
-        assertEquals("Jonathas", funcionarioInserido.getNome());
-        assertEquals(Date.valueOf("2024-11-05"),funcionarioInserido.getDataAdmissao());
-        assertEquals(2500.0, funcionarioInserido.getValorSalario());
+        assertEquals(funcionarioInserido, funcionario);
         assertEquals(userUuid, funcionarioInserido.getIdUsuario());
-        assertTrue(funcionarioInserido.getStatus());
     }
 
     @Test
