@@ -49,4 +49,4 @@ Acesse a tela de login para começar a utilizar o sistema.
 - src/util: Contem classes com funcoes auxiliares.
 
 ## Autor
-Jonathas Sousa
+Jonathas Sousa 
